@@ -8,7 +8,9 @@
 **A submission for the Mantra Hackathon - Round 1.**
 
 Codex is an advanced, agentic chat assistant for visual understanding. It processes video input, recognizes key events, summarizes content, and engages in sophisticated multi-turn conversations with the user.
-Collabrator :  MantraHackathon (https://github.com/MantraHackathon)
+
+-----
+#### Collabrator :  MantraHackathon (https://github.com/MantraHackathon)
 -----
 
 ## 🚀 Live Demo
