@@ -1,4 +1,6 @@
-# codex
+# Codex
+
+Deployed Demo: https://codex-video-analyzer.streamlit.app/
 
 # Visual Understanding Chat Assistant
 
