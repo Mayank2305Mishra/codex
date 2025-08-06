@@ -1,331 +1,157 @@
-# Codex
+#Codex - Team Project
 
-Deployed Demo: https://codex-video-analyzer.streamlit.app/
+Of course\! Here is a comprehensive, professional, and "killer" `README.md` file tailored for your Round 1 submission, incorporating all the required elements from the problem statement.
 
-# Visual Understanding Chat Assistant
+-----
 
-Deployed Demo: https://codex-video-analyzer.streamlit.app/
+# Codex: The Visual Understanding Chat Assistant 🎥🤖
 
----
+[](https://www.python.org/)
+[](https://streamlit.io)
+[](https://ai.google.dev/)
+[](https://opensource.org/licenses/MIT)
 
-### 📌 Project Overview
-This project is a prototype for a **visual understanding chat assistant** that enables users to upload and analyze short video clips (up to 2 minutes). The assistant recognizes key events, detects guideline adherence (e.g., rule violations), generates textual summaries, and supports natural, multi-turn conversational exploration of the video content.
+**A submission for the Mantra Hackathon - Round 1.**
 
-Use cases include traffic scene analysis, event annotation, and accessible video summarization. The assistant supports interactive, contextual conversations to let users query events, people, or rules detected in the video, all within a simple conversational interface.
+Codex is an advanced, agentic chat assistant for visual understanding. It processes video input, recognizes key events, summarizes content, and engages in sophisticated multi-turn conversations with the user.
 
----
+-----
 
-### 🎯 Problem Statement Alignment
-Round 1 Hackathon Goals & Features
+## 🚀 Live Demo
 
-| Requirement | Implemented in This Solution? | Description |
-| :--- | :--- | :--- |
-| Video Event Recognition & Summarization | ✅ | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence. |
-| Multi-Turn Conversations | ✅ | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications. |
-| Video Input Processing (≤2 min duration) | ✅ | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow. |
-| Guideline Violation Reporting (e.g., traffic) | ✅ | Summarizes findings and can highlight rule or guideline violations when present and requested. |
-| Agentic Workflow | ✅ | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
+Experience the power of Codex firsthand. Interact with the live application here:
 
----
+**[https://codex-video-analyzer.streamlit.app/](https://codex-video-analyzer.streamlit.app/)**
 
-### 🏗️ Architecture Diagram
-```text
-                +-----------------+
-                |    Frontend     |
-          (Streamlit Web UI)
-                +--------+--------+
-                         |
-              Video Upload, Chat Input/Output, Option Select
-                         |
-                +--------v--------+
-                |    Backend      |
-        (Streamlit, GenAI API)
-                +--------+--------+
-                         |
-          +--------------v--------------+
-          |       Gemini GenAI API      |
-          +--------------+--------------+
-                         |
-         Video Event Recognition & Summarization
-                         |
-                +--------v--------+
-                |  User receives  |
-                |   Event Logs,   |
-                |   Summaries,    |
-                |  Timeline, Chat |
-                +-----------------+
+-----
+
+## ✨ Features
+
+Codex is built to deliver a seamless and intuitive video analysis experience. The core features implemented for Round 1 are:
+
+  * [cite\_start]**🎬 Dynamic Video Processing:** Accepts and processes user-uploaded video streams (up to 2 minutes) in formats like MP4, MOV, and AVI. [cite: 19, 21]
+  * **👁️ Event Recognition & Summarization:** Intelligently identifies key events, objects, and actions within the video. [cite\_start]It generates concise summaries, highlighting important moments and adherence to specific guidelines. [cite: 9, 10, 11]
+  * **💬 Multi-Turn Conversational AI:** Powered by an agentic workflow, Codex supports natural, multi-turn conversations. [cite\_start]It retains context from previous interactions to answer follow-up questions coherently. [cite: 13, 14, 15, 16]
+  * **🔬 Multiple Analysis Modes:**
+      * **Chat Mode:** Engage in a real-time dialogue about the video content.
+      * **Detailed Analysis:** Generate a comprehensive summary and a timestamped object timeline table.
+      * **Analysis History:** Review and revisit past conversations and analyses.
+
+-----
+
+## 🏗️ System Architecture
+
+The architecture is designed for simplicity, interactivity, and scalability, leveraging a powerful multimodal AI model at its core.
+
+The workflow is as follows:
+
+1.  **User Interface (Streamlit):** The user uploads a video and interacts with the assistant through a web-based interface.
+2.  **Backend (Python/Streamlit):** The Streamlit server handles the application logic. It manages video file uploads, maintains session state, and orchestrates communication with the AI model.
+3.  **Video Processing:** The uploaded video is temporarily stored and prepared for analysis.
+4.  **AI Core (Google Gemini 1.5 Pro):** The video and user prompts (along with chat history for context) are sent to the Gemini API. The model performs the heavy lifting of visual understanding, event recognition, and response generation.
+5.  **Response Delivery:** The generated text/analysis is streamed back to the backend and displayed to the user in the Streamlit UI.
+
+-----
+
+## 🛠️ Tech Stack & Justification
+
+The technology stack was chosen to facilitate rapid development of a high-performance AI/ML application while ensuring scalability.
+
+  * **Backend:** **Python**
+
+      * **Justification:** Python is the undisputed leader in AI/ML development, offering an extensive ecosystem of libraries and frameworks. Its simplicity and power make it the ideal choice for building the application's logic.
+
+  * **Frontend:** **Streamlit**
+
+      * **Justification:** Streamlit is a premier open-source framework for building and sharing data and AI applications with minimal effort. [cite\_start]Its ability to create interactive UIs directly from Python scripts allowed for rapid prototyping and a focus on core functionality, which is perfect for this round's objectives. [cite: 4]
+
+  * **AI Model:** **Google Gemini 1.5 Pro API**
+
+      * [cite\_start]**Justification:** As a state-of-the-art, closed-source multimodal model, Gemini 1.5 Pro provides powerful, out-of-the-box capabilities for video understanding. [cite: 24] [cite\_start]Its large context window is excellent for multi-turn conversations, and its advanced reasoning allows for effective event recognition and summarization, perfectly aligning with the project's core requirements. [cite: 25]
+
+-----
+
+## ⚙️ Setup and Installation
+
+Follow these instructions to get a local instance of Codex up and running.
+
+**Prerequisites:**
+
+  * Python 3.9+
+  * Git
+
+**1. Clone the Repository:**
+
+```bash
+git clone <your-repository-url>
+cd <repository-directory>
 ```
 
-#### Flow:
+**2. Create a Virtual Environment:**
 
-    1. User uploads a video and enters queries via the web UI.
-
-    2. Video is uploaded/staged to Google Gemini's API.
-
-    3. Analysis prompts are sent for event detection, summary, and timeline creation.
-
-    4. Responses (summaries, tables, reports) are formatted and rendered conversationally.
-
-### ⚙️ Tech Stack Justification
-##### Round 1 Hackathon Goals & Features
-
-| **Requirement**                               | **Implemented in This Solution?** | **Description**                                                                                             |
-|-----------------------------------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Video Event Recognition & Summarization       |                 ✅                 | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence.      |
-| Multi-Turn Conversations                      |                 ✅                 | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications.  |
-| Video Input Processing (≤2 min duration)      |                 ✅                 | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow.     |
-| Guideline Violation Reporting (e.g., traffic) |                 ✅                 | Summarizes findings and can highlight rule or guideline violations when present and requested.              |
-| Agentic Workflow                              |                 ✅                 | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
-
-#### Suitability:
-
-Using Streamlit and the Gemini API accelerates prototyping and experimentation, particularly for teams with limited on-premise GPU capacity. Google GenAI's video model does the heavy lifting, returning actionable insights and summaries in a manner that's easily orchestrated from Python.
-
-# Visual Understanding Chat Assistant
-
-Deployed Demo: https://codex-video-analyzer.streamlit.app/
-
----
-
-### 📌 Project Overview
-This project is a prototype for a **visual understanding chat assistant** that enables users to upload and analyze short video clips (up to 2 minutes). The assistant recognizes key events, detects guideline adherence (e.g., rule violations), generates textual summaries, and supports natural, multi-turn conversational exploration of the video content.
-
-Use cases include traffic scene analysis, event annotation, and accessible video summarization. The assistant supports interactive, contextual conversations to let users query events, people, or rules detected in the video, all within a simple conversational interface.
-
----
-
-### 🎯 Problem Statement Alignment
-Round 1 Hackathon Goals & Features
-
-| Requirement | Implemented in This Solution? | Description |
-| :--- | :--- | :--- |
-| Video Event Recognition & Summarization | ✅ | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence. |
-| Multi-Turn Conversations | ✅ | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications. |
-| Video Input Processing (≤2 min duration) | ✅ | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow. |
-| Guideline Violation Reporting (e.g., traffic) | ✅ | Summarizes findings and can highlight rule or guideline violations when present and requested. |
-| Agentic Workflow | ✅ | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
-
----
-
-### 🏗️ Architecture Diagram
-```text
-                +-----------------+
-                |    Frontend     |
-          (Streamlit Web UI)
-                +--------+--------+
-                         |
-              Video Upload, Chat Input/Output, Option Select
-                         |
-                +--------v--------+
-                |    Backend      |
-        (Streamlit, GenAI API)
-                +--------+--------+
-                         |
-          +--------------v--------------+
-          |       Gemini GenAI API      |
-          +--------------+--------------+
-                         |
-         Video Event Recognition & Summarization
-                         |
-                +--------v--------+
-                |  User receives  |
-                |   Event Logs,   |
-                |   Summaries,    |
-                |  Timeline, Chat |
-                +-----------------+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```
 
-#### Flow:
+**3. Install Dependencies:**
 
-    1. User uploads a video and enters queries via the web UI.
-
-    2. Video is uploaded/staged to Google Gemini's API.
-
-    3. Analysis prompts are sent for event detection, summary, and timeline creation.
-
-    4. Responses (summaries, tables, reports) are formatted and rendered conversationally.
-
-### ⚙️ Tech Stack Justification
-##### Round 1 Hackathon Goals & Features
-
-| **Requirement**                               | **Implemented in This Solution?** | **Description**                                                                                             |
-|-----------------------------------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Video Event Recognition & Summarization       |                 ✅                 | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence.      |
-| Multi-Turn Conversations                      |                 ✅                 | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications.  |
-| Video Input Processing (≤2 min duration)      |                 ✅                 | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow.     |
-| Guideline Violation Reporting (e.g., traffic) |                 ✅                 | Summarizes findings and can highlight rule or guideline violations when present and requested.              |
-| Agentic Workflow                              |                 ✅                 | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
-
-#### Suitability:
-
-Using Streamlit and the Gemini API accelerates prototyping and experimentation, particularly for teams with limited on-premise GPU capacity. Google GenAI's video model does the heavy lifting, returning actionable insights and summaries in a manner that's easily orchestrated from Python.
-
-# Visual Understanding Chat Assistant
-
-Deployed Demo: https://codex-video-analyzer.streamlit.app/
-
----
-
-### 📌 Project Overview
-This project is a prototype for a **visual understanding chat assistant** that enables users to upload and analyze short video clips (up to 2 minutes). The assistant recognizes key events, detects guideline adherence (e.g., rule violations), generates textual summaries, and supports natural, multi-turn conversational exploration of the video content.
-
-Use cases include traffic scene analysis, event annotation, and accessible video summarization. The assistant supports interactive, contextual conversations to let users query events, people, or rules detected in the video, all within a simple conversational interface.
-
----
-
-### 🎯 Problem Statement Alignment
-Round 1 Hackathon Goals & Features
-
-| Requirement | Implemented in This Solution? | Description |
-| :--- | :--- | :--- |
-| Video Event Recognition & Summarization | ✅ | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence. |
-| Multi-Turn Conversations | ✅ | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications. |
-| Video Input Processing (≤2 min duration) | ✅ | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow. |
-| Guideline Violation Reporting (e.g., traffic) | ✅ | Summarizes findings and can highlight rule or guideline violations when present and requested. |
-| Agentic Workflow | ✅ | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
-
----
-
-### 🏗️ Architecture Diagram
-```text
-                +-----------------+
-                |    Frontend     |
-          (Streamlit Web UI)
-                +--------+--------+
-                         |
-              Video Upload, Chat Input/Output, Option Select
-                         |
-                +--------v--------+
-                |    Backend      |
-        (Streamlit, GenAI API)
-                +--------+--------+
-                         |
-          +--------------v--------------+
-          |       Gemini GenAI API      |
-          +--------------+--------------+
-                         |
-         Video Event Recognition & Summarization
-                         |
-                +--------v--------+
-                |  User receives  |
-                |   Event Logs,   |
-                |   Summaries,    |
-                |  Timeline, Chat |
-                +-----------------+
+```bash
+pip install -r requirements.txt
 ```
 
-#### Flow:
+**4. Set Up Environment Variables:**
 
-    1. User uploads a video and enters queries via the web UI.
+  * Create a file named `.env` in the root directory.
+  * Add your Google AI API key to this file:
 
-    2. Video is uploaded/staged to Google Gemini's API.
+<!-- end list -->
 
-    3. Analysis prompts are sent for event detection, summary, and timeline creation.
-
-    4. Responses (summaries, tables, reports) are formatted and rendered conversationally.
-
-### ⚙️ Tech Stack Justification
-
-| **Component** | **Choice**                                                     | **Why?**                                                                                       |
-|---------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| UI            |                            Streamlit                           | Simple, fast, suitable for quick prototyping; user-friendly interface for both video and chat. |
-| Backend       |       Python, Streamlit, Google Gemini API (google.genai)      | Python enables rapid integration with AI; Gemini API provides state-of-the-art video VLM.      |
-| Video Proc    | Via Gemini's API & streaming through Streamlit and server-side | Offloads heavy ML workloads to cloud, simplifying implementation for limited compute locally.  |
-| AI Models     |               Gemini 2.5 Pro (Google GenAI, API)               | Leading VLM for multimodal reasoning; excellent at video, text, and conversation tasks.        |
-| State Mgmt    |                   Session state via Streamlit                  | Smooth multi-turn conversation with persistent context per user session. 
-
-#### Suitability:
-
-Using Streamlit and the Gemini API accelerates prototyping and experimentation, particularly for teams with limited on-premise GPU capacity. Google GenAI's video model does the heavy lifting, returning actionable insights and summaries in a manner that's easily orchestrated from Python.
-
----
-
-## 📄 File Descriptions
-
-| File / Directory     | Description |
-|----------------------|-------------|
-| **app.py**            | Main Streamlit application that runs the user interface and integrates backend functionalities. |
-| **prompt.py**         | Stores reusable prompt templates like `analysis_prompt` for API interactions. |
-| **.env**              | Environment configuration file that holds sensitive keys (e.g., API keys). **Do not commit this file to version control.** |
-| **requirements.txt**  | Lists all Python packages and dependencies needed to run the application. |
-| **README.md**         | Documentation file explaining the project structure and usage. |
-
----# Visual Understanding Chat Assistant
-
-Deployed Demo: https://codex-video-analyzer.streamlit.app/
-
----
-
-### 📌 Project Overview
-This project is a prototype for a **visual understanding chat assistant** that enables users to upload and analyze short video clips (up to 2 minutes). The assistant recognizes key events, detects guideline adherence (e.g., rule violations), generates textual summaries, and supports natural, multi-turn conversational exploration of the video content.
-
-Use cases include traffic scene analysis, event annotation, and accessible video summarization. The assistant supports interactive, contextual conversations to let users query events, people, or rules detected in the video, all within a simple conversational interface.
-
----
-
-### 🎯 Problem Statement Alignment
-Round 1 Hackathon Goals & Features
-
-| Requirement | Implemented in This Solution? | Description |
-| :--- | :--- | :--- |
-| Video Event Recognition & Summarization | ✅ | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence. |
-| Multi-Turn Conversations | ✅ | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications. |
-| Video Input Processing (≤2 min duration) | ✅ | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow. |
-| Guideline Violation Reporting (e.g., traffic) | ✅ | Summarizes findings and can highlight rule or guideline violations when present and requested. |
-| Agentic Workflow | ✅ | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
-
----
-
-### 🏗️ Architecture Diagram
-```text
-                +-----------------+
-                |    Frontend     |
-          (Streamlit Web UI)
-                +--------+--------+
-                         |
-              Video Upload, Chat Input/Output, Option Select
-                         |
-                +--------v--------+
-                |    Backend      |
-        (Streamlit, GenAI API)
-                +--------+--------+
-                         |
-          +--------------v--------------+
-          |       Gemini GenAI API      |
-          +--------------+--------------+
-                         |
-         Video Event Recognition & Summarization
-                         |
-                +--------v--------+
-                |  User receives  |
-                |   Event Logs,   |
-                |   Summaries,    |
-                |  Timeline, Chat |
-                +-----------------+
+```
+GOOGLE_API_KEY="YOUR_API_KEY_HERE"
 ```
 
-#### Flow:
+**5. Run the Application:**
 
-    1. User uploads a video and enters queries via the web UI.
+```bash
+streamlit run app.py
+```
 
-    2. Video is uploaded/staged to Google Gemini's API.
+Your browser should automatically open to the application.
 
-    3. Analysis prompts are sent for event detection, summary, and timeline creation.
+-----
 
-    4. Responses (summaries, tables, reports) are formatted and rendered conversationally.
+## 📖 Usage Instructions
 
-### ⚙️ Tech Stack Justification
-##### Round 1 Hackathon Goals & Features
+Interacting with Codex is simple and intuitive.
 
-| **Requirement**                               | **Implemented in This Solution?** | **Description**                                                                                             |
-|-----------------------------------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Video Event Recognition & Summarization       |                 ✅                 | Detects, summarizes, and reports key events and objects from video input; reports guideline adherence.      |
-| Multi-Turn Conversations                      |                 ✅                 | Chatbot remembers conversation history and context for coherent, follow-up discussions and clarifications.  |
-| Video Input Processing (≤2 min duration)      |                 ✅                 | Accepts, uploads, and processes video files up to 2 minutes, with efficient handling and user workflow.     |
-| Guideline Violation Reporting (e.g., traffic) |                 ✅                 | Summarizes findings and can highlight rule or guideline violations when present and requested.              |
-| Agentic Workflow                              |                 ✅                 | Allows sequential and contextual interaction, supports different query types for detailed analysis or chat. |
+**1. Upload a Video:**
 
-#### Suitability:
+  * Use the file uploader in the sidebar to select a video file (`.mp4`, `.mov`, etc.).
+  * The application will process the video and display a success message.
 
-Using Streamlit and the Gemini API accelerates prototyping and experimentation, particularly for teams with limited on-premise GPU capacity. Google GenAI's video model does the heavy lifting, returning actionable insights and summaries in a manner that's easily orchestrated from Python.
+**2. Chat Mode:**
 
+  * This is the default mode.
+  * The uploaded video will be displayed.
+  * Type your questions into the chat input box at the bottom and press Enter.
+  * **Example Query:** *"What is the main color of the car shown at the beginning?"* or *"Summarize the key events in this video."*
+
+**3. Detailed Analysis Mode:**
+
+  * Select "Detailed Analysis" from the sidebar.
+  * Check the boxes for "Generate Detailed Summary" and/or "Generate Object Timeline Table".
+  * Click the **"Generate Detailed Analysis"** button to receive a structured breakdown of the video content.
+
+**4. Analysis History:**
+
+  * Select "Analysis History" to view a log of your previous chat interactions for the current session.
+
+-----
+
+## 🎬 Demo Video
+
+Below is a brief demonstration of the Codex assistant in action.
+
+*(A placeholder for your demo video or GIF)*
+`[Link to your demo video or embed a GIF here]`
