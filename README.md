@@ -146,6 +146,25 @@ Interacting with Codex is simple and intuitive.
 ## 🎬 Demo Video
 
 Below is a brief demonstration of the Codex assistant in action.
+[![demo](https://img.shields.io/badge/DEMO_VIDEO-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://drive.google.com/drive/my-drive)
+Direct Link : https://drive.google.com/drive/my-drive
+
+
+
+## 📩 Contact Info
+
+## 🔗 Links (Mayank Mishra)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://mayankmishra.vercel.app/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-mishra-5884472b8/)
+[![github](https://img.shields.io/badge/Github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mayank2305Mishra)
+#### Email : mayank2305mishra@gmail.com
+
+
+
+
+
+
+
 
 *(A placeholder for your demo video or GIF)*
 `(https://drive.google.com/file/d/1uZZ0brRgFM_-VYMv5mCAcn3UeTy1alEp/view?usp=sharing)`
