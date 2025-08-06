@@ -146,9 +146,27 @@ Interacting with Codex is simple and intuitive.
 ## 🎬 Demo Video
 
 Below is a brief demonstration of the Codex assistant in action.
-[![demo](https://img.shields.io/badge/DEMO_VIDEO-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://drive.google.com/drive/my-drive)
-Direct Link : https://drive.google.com/drive/my-drive
+[![demo](https://img.shields.io/badge/DEMO_VIDEO-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://drive.google.com/file/d/1uZZ0brRgFM_-VYMv5mCAcn3UeTy1alEp/view?usp=sharing)
+Direct Link : [https://drive.google.com/drive/my-drive](https://drive.google.com/file/d/1uZZ0brRgFM_-VYMv5mCAcn3UeTy1alEp/view?usp=sharing)
 
+
+
+## Screenshots
+
+#### Main App Layout
+![App Screenshot](https://i.ibb.co/pqPBm50/Screenshot-2025-08-06-225509.png)
+
+#### Response on the vidoe
+![App Screenshot](https://i.ibb.co/VckfD9L2/Screenshot-2025-08-06-225532.png)
+
+#### Summary 
+![App Screenshot](https://i.ibb.co/RT1PZdKy/Screenshot-2025-08-06-225618.png)
+
+#### Object Detection 
+![App Screenshot](https://i.ibb.co/nN9jn32j/Screenshot-2025-08-06-225629.png)
+
+#### History Overview
+![App Screenshot](https://i.ibb.co/jkzdZ69f/Screenshot-2025-08-06-225657.png)
 
 
 ## 📩 Contact Info
@@ -159,12 +177,3 @@ Direct Link : https://drive.google.com/drive/my-drive
 [![github](https://img.shields.io/badge/Github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mayank2305Mishra)
 #### Email : mayank2305mishra@gmail.com
 
-
-
-
-
-
-
-
-*(A placeholder for your demo video or GIF)*
-`(https://drive.google.com/file/d/1uZZ0brRgFM_-VYMv5mCAcn3UeTy1alEp/view?usp=sharing)`
