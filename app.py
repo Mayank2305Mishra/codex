@@ -1,5 +1,5 @@
 import streamlit as st
-from google import generativeai as genai
+from google import genai
 import time
 import tempfile
 from pathlib import Path
@@ -14,19 +14,16 @@ GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
 
 logging.basicConfig(level=logging.INFO)
 
+
 try:
-    genai.configure(api_key=GOOGLE_API_KEY)
+    client = genai.Client(api_key=GOOGLE_API_KEY)
+
 except Exception:
-    st.error("🚨 Google API Key not found. Please set it in your Streamlit secrets (`.streamlit/secrets.toml`).")
+    st.error("🚨 Google API Key not found.).")
     st.stop()
 
-# Constants
 NUMBER_OF_MESSAGES_TO_DISPLAY = 20
-# Note: 'gemini-2.5-pro' is not a valid model as of now. Using the latest powerful model.
-MODEL_NAME = "gemini-2.5-pro"
 
-
-# New prompt for the on-demand detailed analysis page
 detailed_analysis_prompt_template = """
 You are a highly advanced video analysis AI. Your task is to perform a detailed analysis of the provided video based on the user's selected options.
 
@@ -36,7 +33,7 @@ You are a highly advanced video analysis AI. Your task is to perform a detailed 
 Please format your response clearly using Markdown.
 """
 
-# --- Session State Management ---
+# Defining the initial session state
 def initialize_session_state():
     """Initialize session state variables if they don't exist."""
     state_defaults = {
@@ -52,27 +49,22 @@ def initialize_session_state():
             st.session_state[key] = value
 
 def initialize_chat():
-    """Initialize chat with a welcome message if the history is empty."""
     if not st.session_state.chat_history:
         welcome_message = "Hello! I'm your Video Analysis Assistant. Upload a video and I'll help you analyze its content through our conversation!"
         st.session_state.chat_history.append({"role": "assistant", "content": welcome_message})
 
-# --- Core Functions ---
+# Defining the core functions
 def get_or_upload_video_file():
-    """
-    Uploads the video file to the Gemini API if not already processed.
-    This is the key efficiency improvement: upload once, reuse many times.
-    """
     if st.session_state.get("processed_file"):
         return st.session_state.processed_file
 
     if st.session_state.get("current_video_path"):
         with st.spinner('Preparing video for analysis... (this happens once per video)'):
             try:
-                video_file = genai.upload_file(path=st.session_state.current_video_path)
+                video_file = client.files.upload(file=st.session_state.current_video_path)
                 while video_file.state.name == "PROCESSING":
                     time.sleep(2)
-                    video_file = genai.get_file(video_file.name)
+                    video_file = client.files.get(name=video_file.name)
 
                 if video_file.state.name == "FAILED":
                     st.error("Video processing failed. Please try a different video.")
@@ -87,9 +79,6 @@ def get_or_upload_video_file():
     return None
 
 def get_detailed_analysis(video_file_api, generate_summary, generate_timeline):
-    """
-    Generates the detailed analysis based on user-selected checkboxes.
-    """
     if not video_file_api:
         return "Error: Video file not available for analysis."
     if not generate_summary and not generate_timeline:
@@ -104,10 +93,9 @@ def get_detailed_analysis(video_file_api, generate_summary, generate_timeline):
     final_prompt = detailed_analysis_prompt_template.format(request_section=request_section)
 
     try:
-        model = genai.GenerativeModel(MODEL_NAME)
-        response = model.generate_content(
-            [final_prompt, video_file_api],
-            request_options={'timeout': 600}
+        response = client.models.generate_content(
+            model='gemini-2.5-pro',
+            contents=[final_prompt, video_file_api],
         )
         return response.text
     except Exception as e:
@@ -115,19 +103,20 @@ def get_detailed_analysis(video_file_api, generate_summary, generate_timeline):
         return f"Error: Could not generate detailed analysis. Details: {e}"
 
 def handle_chat_input(chat_input, video_file_api):
-    """Handles user chat input, generates a response, and updates history."""
     st.session_state.chat_history.append({"role": "user", "content": chat_input})
 
     with st.spinner('Thinking...'):
         try:
-            model = genai.GenerativeModel(MODEL_NAME)
             contents = [analysis_prompt, f"User Query: {chat_input} and Chat history: {st.session_state.chat_history}"]
             if video_file_api:
                 contents.insert(1, video_file_api)
             else:
                 contents[0] += "\nNote: The user has not uploaded a video. Please guide them to upload one if their query requires it."
 
-            response = model.generate_content(contents)
+            response = client.models.generate_content(
+                model='gemini-2.5-pro',
+                contents=contents,
+            )
             assistant_response = response.text
         except Exception as e:
             logging.error(f"Error during chat generation: {e}")
