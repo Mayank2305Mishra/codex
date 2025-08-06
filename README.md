@@ -148,4 +148,4 @@ Interacting with Codex is simple and intuitive.
 Below is a brief demonstration of the Codex assistant in action.
 
 *(A placeholder for your demo video or GIF)*
-`[Link to your demo video or embed a GIF here]`
+`(https://drive.google.com/file/d/1uZZ0brRgFM_-VYMv5mCAcn3UeTy1alEp/view?usp=sharing)`
