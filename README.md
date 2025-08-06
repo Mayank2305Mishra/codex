@@ -1,9 +1,3 @@
-#Codex - Team Project
-
-Of course\! Here is a comprehensive, professional, and "killer" `README.md` file tailored for your Round 1 submission, incorporating all the required elements from the problem statement.
-
------
-
 # Codex: The Visual Understanding Chat Assistant 🎥🤖
 
 [](https://www.python.org/)
