@@ -94,7 +94,7 @@ def get_detailed_analysis(video_file_api, generate_summary, generate_timeline):
 
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-pro',
+            model='gemini-2.5-flash-lite',
             contents=[final_prompt, video_file_api],
         )
         return response.text
@@ -114,7 +114,7 @@ def handle_chat_input(chat_input, video_file_api):
                 contents[0] += "\nNote: The user has not uploaded a video. Please guide them to upload one if their query requires it."
 
             response = client.models.generate_content(
-                model='gemini-2.5-pro',
+                model='gemini-2.5-flash-lite',
                 contents=contents,
             )
             assistant_response = response.text
@@ -235,4 +235,5 @@ def main():
             st.info("No chat analysis history yet. Chat about a video to create a history entry.")
 
 if __name__ == "__main__":
+
     main()
